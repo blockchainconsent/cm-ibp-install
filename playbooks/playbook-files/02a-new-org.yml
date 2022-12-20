@@ -1,0 +1,55 @@
+#
+# SPDX-License-Identifier: Apache-2.0
+# creates the peers and CA for the Org
+---
+
+api_endpoint: https://ibpsw-test-ibp-console-console.ibp-dev-1-226e64952a976153e1be4b395e756d61-0000.us-east.containers.appdomain.cloud
+api_authtype: basic
+state: present
+api_key: psacchit@us.ibm.com
+api_secret: ibpswpw&
+organization_name: "tnt2org"
+organization_msp_id: tnt2msp
+org1_name: "tnt2org"
+ca_admin_enrollment_id: tnt2caadmin
+ca_admin_enrollment_secret: tnt2caadminpw
+organization_admin_enrollment_id: tnt2orgadmin
+organization_admin_enrollment_secret: tnt2orgadminpw
+peer_enrollment_id: tnt2peer
+peer_enrollment_secret: tnt2peerpw
+application_enrollment_id: tnt2app
+application_enrollment_secret: tnt2apppw
+application_enrollment_type: client
+application_max_enrollments: 10
+peer_state_db: "couchdb"
+ca_name: "tnt2org-ca"
+org2_ca_name: "tnt2org-ca"
+peer_name: "tnt2org-peer"
+org2_peer_name: "tnt2org-peer"
+peers: 1
+replicas: 1
+ca_db_type: postgres
+datasource: "host=339f8340-7260-4197-9f71-a1c3700ac543.brjdfmfw09op3teml03g.databases.appdomain.cloud port=31660 dbname=cmorg_tnt2 password=dc92fc675c167b3709f302970f2a3caf22b5cd6607d0ce68c3781d02a48f7e45 user=ibm_cloud_bb35e9ed_8f3a_4dbb_8b28_e1e6855473b4 sslmode=verify-full"
+# version: 20200618
+# ordering_service_version: 20200618
+# peer_version:
+wait_timeout: 24000
+zone: us-east-
+resources:
+  ca:
+    requests:
+      cpu: 1000m # 200m = 0.1 CPU
+      memory: 1G
+peer_resources:
+  chaincodelauncher:
+    requests:
+      cpu: 600m
+      memory: 2G
+  peer:
+    requests:
+      cpu: 600m
+      memory: 1G
+  couchdb:
+    requests:
+      cpu: 600m
+      memory: 500M

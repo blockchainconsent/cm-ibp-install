@@ -1,0 +1,20 @@
+---
+- name: Create the channel
+  hosts: localhost
+  vars_files:
+    - 00-common-vars.yml
+    - 02-org1-vars.yml
+  tasks:
+    - name: Create organization from a certificate authority
+      ibm.blockchain_platform.organization:
+        state: present
+        api_endpoint: "{{ api_endpoint }}"
+        api_authtype: basic
+        api_key: "{{ api_key }}"
+        api_secret: "{{ api_secret }}"
+        name: "{{ org1_name }}"
+        msp_id: "{{ org1_msp_id }}"
+        certificate_authority: "{{ org1_ca_name }}"
+        registrar: Org1 CA Admin.json
+        admins:
+          - LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUI1RENDQVlxZ0F3SUJBZ0lVUER5SG0xdXFkRFl4cjRsQ3JMd3hrK3BKcnhZd0NnWUlLb1pJemowRUF3SXcKV2pFTE1Ba0dBMVVFQmhNQ1ZWTXhGekFWQmdOVkJBZ1REazV2Y25Sb0lFTmhjbTlzYVc1aE1SUXdFZ1lEVlFRSwpFd3RJZVhCbGNteGxaR2RsY2pFUE1BMEdBMVVFQ3hNR1JtRmljbWxqTVFzd0NRWURWUVFERXdKallUQWVGdzB5Ck1EQTNNak15TURRMk1EQmFGdzB5TVRBM01qTXlNRFV4TURCYU1DZ3hEekFOQmdOVkJBc1RCbU5zYVdWdWRERVYKTUJNR0ExVUVBeE1NYUhCaGMzTmpZV0ZrYldsdU1Ga3dFd1lIS29aSXpqMENBUVlJS29aSXpqMERBUWNEUWdBRQpSeVI2clRld3BlZUVrR05BdkhOOWxEalQzWlBWSkJBZVpPREozZUpMUTFRcXN0QjFYU2tnZTF4dURJb05lNWNVCnc5REhINkU4T2hJMnE0dEd3UWljUGFOZ01GNHdEZ1lEVlIwUEFRSC9CQVFEQWdlQU1Bd0dBMVVkRXdFQi93UUMKTUFBd0hRWURWUjBPQkJZRUZHbWtJYTlIdVNIKzNvRTRTUGlpbUVyUGVDQzhNQjhHQTFVZEl3UVlNQmFBRk12YQpyS2ZGckVkWjBzT2oyb01jTGFvTEtWMXFNQW9HQ0NxR1NNNDlCQU1DQTBnQU1FVUNJUUMrZE1wbnJVZkFrYnc4Ckl0blJmTXh2a0grSHJxRFYzK1BCdVR1bGtIU2ZYZ0lnYlh1bG9rcHhnUlNCL3g3M2Y4MW5GNTdDZ09CcnV4RFQKaTlhM0dqNHpYN1E9Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K

@@ -1,0 +1,32 @@
+---
+- name: Deploy IBM Blockchain Platform custom resource definitions
+  hosts: localhost
+  vars:
+    state: present
+    target: k8s
+    arch: amd64
+    namespace: ibpinfra-test
+    image_registry_password: eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJJQk0gTWFya2V0cGxhY2UiLCJpYXQiOjE2MTQ2NzYzMzYsImp0aSI6IjdlYzFjODJlYWJjYTQ5ZWE5ZmQ1MTE0MWExMThlMDE2In0.VKdyZMHVQj0hG26xJQZPpAKAkgypiFGfT_MC8RbFo00 
+    image_registry_email: semyon.burtovoy1@ibm.com
+    wait_timeout: 3600
+  roles:
+    - ibm.blockchain_platform.crds
+
+- name: Deploy IBM Blockchain Platform console
+  hosts: localhost
+  vars:
+    state: present
+    target: k8s
+    arch: amd64
+    namespace: ibpsw-test
+    image_registry_password: eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJJQk0gTWFya2V0cGxhY2UiLCJpYXQiOjE2MTQ2NzYzMzYsImp0aSI6IjdlYzFjODJlYWJjYTQ5ZWE5ZmQ1MTE0MWExMThlMDE2In0.VKdyZMHVQj0hG26xJQZPpAKAkgypiFGfT_MC8RbFo00
+    image_registry_email: semyon.burtovoy1@ibm.com
+    console_domain: ibp-dev-1-226e64952a976153e1be4b395e756d61-0000.us-east.containers.appdomain.cloud
+    console_email: psacchit@us.ibm.com
+    console_default_password: ibpswpw
+    operator_version: 20210112
+    product_version: 2.5.1
+    console_storage_class: default
+    wait_timeout: 3600
+  roles:
+    - ibm.blockchain_platform.console

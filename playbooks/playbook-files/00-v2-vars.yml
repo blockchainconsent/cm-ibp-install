@@ -1,0 +1,17 @@
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+---
+api_endpoint: https://ibpsw-test-ibp-console-console.ibp-dev-1-226e64952a976153e1be4b395e756d61-0000.us-east.containers.appdomain.cloud
+api_authtype: basic
+state: present
+api_key: psacchit@us.ibm.com
+api_secret: ibpswpw&
+ordering_service_name: "cmOrderingService"
+ordering_service_admin_identity: cmorderingorg Admin.json
+ordering_service_msp: cmordmsp
+organization_name: "cmorg"
+organization_admin_identity: cmorg Admin.json
+organization_msp: cmmsp
+channel_names:
+  - cm-channel

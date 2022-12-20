@@ -1,0 +1,54 @@
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+---
+- name: Join the channel
+  hosts: localhost
+  vars_files:
+    - 00-common-vars.yml
+    - "{{ org_var_file }}" # 02-pfizer-endorsing-org-vars.yml
+    - "{{ channel_var_file }}" # channel definition vars 
+  tasks:
+    - name: Fetch the genesis block for the channel
+      ibm.blockchain_platform.channel_block:
+        api_endpoint: "{{ api_endpoint }}"
+        api_authtype: "{{ api_authtype }}"
+        api_key: "{{ api_key }}"
+        api_secret: "{{ api_secret | default(omit) }}"
+        api_token_endpoint: "{{ api_token_endpoint | default(omit) }}"
+        operation: fetch
+        ordering_service: "{{ ordering_service_name }}"
+        identity: "{{ organization_name }} Admin.json"
+        msp_id: "{{ organization_msp_id }}"
+        name: "{{ channel_name }}"
+        target: "0"
+        path: channel_genesis_block.bin
+
+    - name: Join the peer to the channel
+      ibm.blockchain_platform.peer_channel:
+        api_endpoint: "{{ api_endpoint }}"
+        api_authtype: "{{ api_authtype }}"
+        api_key: "{{ api_key }}"
+        api_secret: "{{ api_secret | default(omit) }}"
+        api_token_endpoint: "{{ api_token_endpoint | default(omit) }}"
+        operation: join
+        peer: "{{ peer_name }}{{ item }}"
+        identity: "{{ organization_name }} Admin.json"
+        msp_id: "{{ organization_msp_id }}"
+        path: channel_genesis_block.bin
+      loop: "{{ range(1, peers + 1, 1) | list }}"
+      when: peers > 1
+
+    - name: Join sigle peer to the channel
+      ibm.blockchain_platform.peer_channel:
+        api_endpoint: "{{ api_endpoint }}"
+        api_authtype: "{{ api_authtype }}"
+        api_key: "{{ api_key }}"
+        api_secret: "{{ api_secret | default(omit) }}"
+        api_token_endpoint: "{{ api_token_endpoint | default(omit) }}"
+        operation: join
+        peer: "{{ peer_name }}"
+        identity: "{{ organization_name }} Admin.json"
+        msp_id: "{{ organization_msp_id }}"
+        path: channel_genesis_block.bin
+      when: peers == 1

@@ -1,0 +1,9 @@
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+---
+# These vars are used in more than one file,
+# i.e. needed by multiple orgs so can't just live in a per org file
+operator_msp_id: cmmsp
+operator_org_name: "cmOrg"
+channel_name: "cm-channel"

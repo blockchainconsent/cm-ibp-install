@@ -1,0 +1,38 @@
+#
+# SPDX-License-Identifier: Apache-2.0
+# creates the ordering service CA, Orderer and Ordering Service.
+---
+
+api_endpoint: https://ibpsw-test-ibp-console-console.ibp-dev-1-226e64952a976153e1be4b395e756d61-0000.us-east.containers.appdomain.cloud
+api_authtype: basic
+api_key: psacchit@us.ibm.com
+state: present
+ca_name: cm-orderingorgca
+organization_name: "cmorderingorg"
+organization_msp_id: cmordmsp
+api_secret: ibpswpw&
+ca_admin_enrollment_id: cmcaordadmin
+ca_admin_enrollment_secret: cmcaordadminpw
+organization_admin_enrollment_id: cmorderingorgadmin
+organization_admin_enrollment_secret: cmorderingorgadminpw
+ordering_service_enrollment_id: cmorderingorgorderer
+ordering_service_enrollment_secret: cmorderingorgordererpw
+ordering_service_msp: cmordmsp
+ordering_service_nodes: 3
+nodes: 3
+replicas: 1
+# ca_zone: us-south-1
+orderer_type: raft
+# ordering_service_version: 20200618
+# version: 20200618
+wait_timeout: 24000
+ca_db_type: postgres
+datasource: "host=339f8340-7260-4197-9f71-a1c3700ac543.brjdfmfw09op3teml03g.databases.appdomain.cloud
+port=31660 dbname=cmordca_test1
+password=dc92fc675c167b3709f302970f2a3caf22b5cd6607d0ce68c3781d02a48f7e45
+user=ibm_cloud_bb35e9ed_8f3a_4dbb_8b28_e1e6855473b4 sslmode=verify-full"
+ordering_service_resources:
+  orderer:
+    requests:
+      cpu: 1000m
+      memory: 400M

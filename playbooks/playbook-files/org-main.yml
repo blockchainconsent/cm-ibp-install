@@ -1,0 +1,4 @@
+---
+- name: Create endorsing organization
+  include_tasks: create-endorsing.yml
+  when: state == "present"

@@ -1,0 +1,73 @@
+#
+# SPDX-License-Identifier: Apache-2.0
+# creates the peers and CA for the Org
+---
+
+api_endpoint:  https://ibpsw-test-ibp-console-console.ibp-dev-1-226e64952a976153e1be4b395e756d61-0000.us-east.containers.appdomain.cloud
+api_authtype: basic
+state: present
+api_key: psacchit@us.ibm.com
+api_secret: ibpswpw&
+organization_name: "cmOrg"
+organization_msp_id: cmmsp
+org1_name: "cmOrg"
+
+ca_admin_enrollment_id: cmcaadmin
+ca_admin_enrollment_secret: cmcaadminpw
+organization_admin_enrollment_id: cmorgadmin
+organization_admin_enrollment_secret: cmorgadminpw
+peer_enrollment_id: cmpeer
+peer_enrollment_secret: cmpeerpw
+application_enrollment_id: cmapp
+application_enrollment_secret: cmapppw
+application_enrollment_type: client
+application_max_enrollments: 10
+peer_state_db: "couchdb"
+ca_name: "cmorgca"
+org1_ca_name: "cmorgca"
+peer_name: "cmOrg-peer"
+peers: 3
+replicas: 1
+# ca_zone: us-south-1
+ca_db_type: postgres
+
+datasource: "host=339f8340-7260-4197-9f71-a1c3700ac543.brjdfmfw09op3teml03g.databases.appdomain.cloud
+port=31660 dbname=cmorg_test1
+password=dc92fc675c167b3709f302970f2a3caf22b5cd6607d0ce68c3781d02a48f7e45
+user=ibm_cloud_bb35e9ed_8f3a_4dbb_8b28_e1e6855473b4 sslmode=verify-full"
+# version: 20200618
+# ordering_service_version: 20200618
+# peer_version:
+wait_timeout: 600
+zone: us-east-
+# ca_resources:
+#   config_override:
+#     db:
+#       type: postgres
+#       datasource: host=8e91e321-ea1d-4171-8eeb-eddf2b51383e.bkvfvtld0lmh0umkfi70.databases.appdomain.cloud port=30419 user=ibm_cloud_a99dcddb_942d_407f_8bae_fccadad45e13 password=2965f67ff03d18f3742e76b108fb0a76844c68a76d0d7dbfbf42dda7e1aa3bdb dbname=fabric_ca sslmode=verify-full
+#       tls:
+#         enabled: true
+#         certfiles:
+#           - "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUREekNDQWZlZ0F3SUJBZ0lKQU5FSDU4eTIva3pITUEwR0NTcUdTSWIzRFFFQkN3VUFNQjR4SERBYUJnTlYKQkFNTUUwbENUU0JEYkc5MVpDQkVZWFJoWW1GelpYTXdIaGNOTVRnd05qSTFNVFF5T1RBd1doY05Namd3TmpJeQpNVFF5T1RBd1dqQWVNUnd3R2dZRFZRUUREQk5KUWswZ1EyeHZkV1FnUkdGMFlXSmhjMlZ6TUlJQklqQU5CZ2txCmhraUc5dzBCQVFFRkFBT0NBUThBTUlJQkNnS0NBUUVBOGxwYVFHemNGZEdxZU1sbXFqZmZNUHBJUWhxcGQ4cUoKUHIzYklrclhKYlRjSko5dUlja1NVY0NqdzRaL3JTZzhublQxM1NDY09sKzF0bys3a2RNaVU4cU9XS2ljZVlaNQp5K3laWWZDa0dhaVpWZmF6UUJtNDV6QnRGV3YrQUIvOGhmQ1RkTkY3Vlk0c3BhQTNvQkUyYVM3T0FOTlNSWlNLCnB3eTI0SVVnVWNJTEpXK21jdlc4MFZ4K0dYUmZEOVl0dDZQUkpnQmhZdVVCcGd6dm5nbUNNR0JuK2wyS05pU2YKd2VvdllEQ0Q2Vm5nbDIrNlc5UUZBRnRXWFdnRjNpRFFENW5sL240bXJpcE1TWDZVRy9uNjY1N3U3VERkZ2t2QQoxZUtJMkZMellLcG9LQmU1cmNuck03bkhnTmMvbkNkRXM1SmVjSGIxZEh2MVFmUG02cHpJeHdJREFRQUJvMUF3ClRqQWRCZ05WSFE0RUZnUVVLMytYWm8xd3lLcytERW9ZWGJIcnV3U3BYamd3SHdZRFZSMGpCQmd3Rm9BVUszK1gKWm8xd3lLcytERW9ZWGJIcnV3U3BYamd3REFZRFZSMFRCQVV3QXdFQi96QU5CZ2txaGtpRzl3MEJBUXNGQUFPQwpBUUVBSmY1ZHZselVwcWFpeDI2cUpFdXFGRzBJUDU3UVFJNVRDUko2WHQvc3VwUkhvNjNlRHZLdzh6Ujd0bFdRCmxWNVAwTjJ4d3VTbDlacUFKdDcvay8zWmVCK25Zd1BveU8zS3ZLdkFUdW5SdmxQQm40RldWWGVhUHNHKzdmaFMKcXNlam1reW9uWXc3N0hSekdPekpINFpnOFVONm1mcGJhV1NzeWFFeHZxa25DcDlTb1RRUDNENjdBeldxYjF6WQpkb3FxZ0dJWjJueENrcDUvRlh4Ri9UTWI1NXZ0ZVRRd2ZnQnk2MGpWVmtiRjdlVk9XQ3YwS2FOSFBGNWhycWJOCmkrM1hqSjcvcGVGM3hNdlRNb3kzNURjVDNFMlplU1Zqb3VaczE1Tzkwa0kzazJkYVMyT0hKQUJXMHZTajRuTHoKK1BRenAvQjljUW1PTzhkQ2UwNDlRM29hVUE9PQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCgo="
+resources:
+  ca:
+    requests:
+      cpu: 500m # 200m = 0.1 CPU
+      memory: 1G
+peer_resources:
+  dind:
+    requests:
+      cpu: 1000m
+      memory: 2G
+  chaincodelauncher:
+    requests:
+      cpu: 500m
+      memory: 2G
+  peer:
+    requests:
+      cpu: 500m
+      memory: 1G
+  couchdb:
+    requests:
+      cpu: 1000m
+      memory: 1000M
